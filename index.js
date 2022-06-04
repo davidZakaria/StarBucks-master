@@ -60,6 +60,7 @@ app.get("/createHookahmysql", (req, res) => {
   });
 });
 
+//Comment
 const server = app.listen(port, async () => {
   console.log("Server started on port " + port);
   db.execute("SELECT 1+? as test1", [10], (err, rows) => {
