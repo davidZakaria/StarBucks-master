@@ -3,14 +3,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 // const config = require('./config/database');
 const home = require("./routes/home");
-const mysql = require("mysql");
-const { Sequelize, DataTypes } = require("sequelize");
+// const mysql = require("mysql");
+// const { Sequelize, DataTypes } = require("sequelize");
 // const multer = require("multer");
 const path = require("path");
 const multer = require("./multer.js");
 
 require("dotenv").config();
-const db = require("./mysql");
+// const db = require("./mysql");
 const app = express();
 
 const port = process.env.PORT || 5000;
@@ -53,9 +53,6 @@ app.get("/createHookahmysql", (req, res) => {
 // Server Port
 const server = app.listen(port, async () => {
   console.log("Server started on port " + port);
-  db.execute("SELECT 1+? as test1", [10], (err, rows) => {
-    console.log(rows);
-  });
 });
 
 module.exports = server;
