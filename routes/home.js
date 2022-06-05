@@ -7,24 +7,13 @@ const Hookah = require("../models/hooka");
 router.get("/", async (req, res) => {
   const drinks = await Drinks.find().sort("name");
   const food = await Food.find().sort("name");
-
-  res.send(...food, ...Drinks);
+  console.log(...food, ...drinks);
+  res.send([].concat(...food, ...drinks));
 });
-
-// router.get('/:id', async (req,res)=>{
-//     //Check for the id existance
-//     try{
-//         const car = await Car.findById(String(req.params.id));
-//         if(!car) throw err;
-//         res.send(car);
-//     }
-//     catch(err){
-//         res.status(400).send('The car with the given id could not be found!');
-//     }
-// });
 
 router.post("/drinks", async (req, res) => {
   const drinks = new Drinks({
+    id: Drinks.length + 1,
     name: req.body.name,
     Hotorcold: req.body.Hotorcold,
     price: req.body.price,
@@ -39,6 +28,7 @@ router.post("/drinks", async (req, res) => {
 
 router.post("/food", async (req, res) => {
   const food = new Food({
+    id: Food.length + 1,
     name: req.body.name,
     type: req.body.type,
     price: req.body.price,
@@ -51,8 +41,7 @@ router.post("/food", async (req, res) => {
   }
 });
 
-router.post("/drinks/:id", async (req, res) => {
-  //Check for the id existance
+router.post("/drinks", async (req, res) => {
   const drinks = new drinks({
     name: req.body.name,
     Hotorcold: req.body.Hotorcold,
@@ -98,12 +87,5 @@ router.get("/drinks/:id", async (req, res) => {
     res.status(400).send(err);
   }
 });
-
-// const Op = db.Sequelize.Op;
-// router.post('/hooka' , async (req, res) => {
-//     const Hookah = new.Hookah;
-//     id = req.params.id,
-
-// })
 
 module.exports = router;

@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
-const Food = mongoose.model(
-  "Food",
+const Product = mongoose.model(
+  "Product",
   new mongoose.Schema({
-    name: {
+    section: {
       type: String,
       required: true,
       minlength: 5,
       maxlength: 55,
     },
-    type: {
+    category: {
       type: String,
       required: true,
       minlength: 5,
@@ -24,6 +24,6 @@ const Food = mongoose.model(
   })
 );
 
-module.exports = Food;
+module.exports = Product;
 
 // module.exports.Food = foodSchema;
