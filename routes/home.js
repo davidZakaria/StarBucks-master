@@ -13,7 +13,6 @@ router.get("/", async (req, res) => {
 
 router.post("/drinks", async (req, res) => {
   const drinks = new Drinks({
-    id: Drinks.length + 1,
     name: req.body.name,
     Hotorcold: req.body.Hotorcold,
     price: req.body.price,
@@ -28,7 +27,6 @@ router.post("/drinks", async (req, res) => {
 
 router.post("/food", async (req, res) => {
   const food = new Food({
-    id: Food.length + 1,
     name: req.body.name,
     type: req.body.type,
     price: req.body.price,

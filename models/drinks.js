@@ -6,10 +6,6 @@ const mongoose = require("mongoose");
 const Drinks = mongoose.model(
   "Drinks",
   new mongoose.Schema({
-    id: {
-      type: Number,
-      required: true,
-    },
     name: {
       type: String,
       required: true,
