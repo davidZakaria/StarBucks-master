@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const home = require("./routes/home");
 const mysql = require("mysql");
 const { Sequelize, DataTypes } = require("sequelize");
+// const multer = require("multer");
+const path = require("path");
+const multer = require("./multer.js");
 
 require("dotenv").config();
 const db = require("./mysql");
@@ -23,19 +26,6 @@ mongoose
   })
   .then(() => console.log(`Connected to MongoDb on ${port}...`))
   .catch((err) => console.log("Couldn't connect to MongoDb..."));
-
-console.log(process.env.DB_USER, process.env.DB_PASSWORD);
-// MYsql Connection String
-// const mysqldb = mysql.createConnection({
-//     host: process.env.DB_HOST,
-//     user: process.env.DB_USER,
-//     password: process.env.DB_PASSWORD,
-//     database: process.env.DB_NAME
-// });
-// mysqldb.connect((err)=>{
-//     if(err) throw err;
-//     console.log('Connected to MySQL...');
-// });
 
 app.use(bodyParser.json());
 app.use("/", home);
@@ -60,6 +50,7 @@ app.get("/createHookahmysql", (req, res) => {
   });
 });
 
+// Server Port
 const server = app.listen(port, async () => {
   console.log("Server started on port " + port);
   db.execute("SELECT 1+? as test1", [10], (err, rows) => {

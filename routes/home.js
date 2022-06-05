@@ -51,6 +51,21 @@ router.post("/food", async (req, res) => {
   }
 });
 
+router.post("/drinks/:id", async (req, res) => {
+  //Check for the id existance
+  const drinks = new drinks({
+    name: req.body.name,
+    Hotorcold: req.body.Hotorcold,
+    price: req.body.price,
+  });
+  try {
+    const savedDrinks = await drinks.save();
+    res.send(savedDrinks);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 router.put("/drinks/:id", async (req, res) => {
   try {
     const drinks = await Drinks.findByIdAndUpdate(req.params.id, req.body, {
