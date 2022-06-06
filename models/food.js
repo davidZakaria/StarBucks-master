@@ -25,5 +25,3 @@ const Food = mongoose.model(
 );
 
 module.exports = Food;
-
-// module.exports.Food = foodSchema;
