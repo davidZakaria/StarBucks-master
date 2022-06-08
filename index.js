@@ -1,24 +1,17 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const home = require("./routes/home");
-const UsersRouter = require("./routes/user");
+const app = express();
+const port = process.env.PORT || 5000;
 
 // const path = require("path");
 // const multer = require("./multer.js");
 // const db = require("./mysql");
-//test
-const port = process.env.PORT || 5000;
-const app = express();
 
+require("./Start/routes")(app);
 require("dotenv").config();
-require("./start/mongo")();
-
-app.use(bodyParser.json());
-app.use("/", home);
-app.use("/users", UsersRouter);
+require("./Start/mongo")();
 
 const server = app.listen(port, async () => {
-  console.log("Server started on port " + port);
+  console.log(`Server started on port localhost:${port}`);
 });
 
 module.exports = server;

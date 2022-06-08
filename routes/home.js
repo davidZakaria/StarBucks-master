@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const Drinks = require("../models/drinks");
-const Food = require("../models/food");
-const Hookah = require("../models/hooka");
+const Drinks = require("../Models/drinks");
+const Food = require("../Models/food");
+// const Hookah = require("../Models/hooka");
 
 router.get("/", async (req, res) => {
   const drinks = await Drinks.find().sort("name");
   const food = await Food.find().sort("name");
-  console.log(...food, ...drinks);
+  // console.log(...food, ...drinks);
   res.send([].concat(...food, ...drinks));
 });
 

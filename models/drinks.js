@@ -3,28 +3,27 @@ const mongoose = require("mongoose");
 // Joi.objectId = require('joi-objectid')(Joi);
 // const {validatedrinks, drinksSchema} = require('./drinks');
 
-const Drinks = mongoose.model(
-  "Drinks",
-  new mongoose.Schema({
-    name: {
-      type: String,
-      required: true,
-      minlength: 5,
-      maxlength: 55,
-    },
-    Hotorcold: {
-      type: String,
-      required: true,
-      minlength: 5,
-      maxlength: 255,
-    },
-    price: {
-      type: String,
-      required: true,
-      minlength: 5,
-      maxlength: 255,
-    },
-  })
-);
+const drinksSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 55,
+  },
+  Hotorcold: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 255,
+  },
+  price: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 255,
+  },
+});
+
+const Drinks = new mongoose.model("Drinks", drinksSchema);
 
 module.exports = Drinks;

@@ -1,27 +1,26 @@
 const mongoose = require("mongoose");
 
-const Food = mongoose.model(
-  "Food",
-  new mongoose.Schema({
-    name: {
-      type: String,
-      required: true,
-      minlength: 5,
-      maxlength: 55,
-    },
-    type: {
-      type: String,
-      required: true,
-      minlength: 5,
-      maxlength: 255,
-    },
-    price: {
-      type: String,
-      required: true,
-      minlength: 5,
-      maxlength: 255,
-    },
-  })
-);
+const foodSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 20,
+  },
+  type: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 20,
+  },
+  price: {
+    type: String,
+    required: true,
+    minlength: 0,
+    maxlength: 255,
+  },
+});
+
+const Food = mongoose.model("Food", foodSchema);
 
 module.exports = Food;

@@ -1,13 +1,10 @@
 const UserService = {};
-
+const User = require("../Models/users");
 
 UserService.getUserInfo = async (id) => {
   try {
-    return {
-      id: 1,
-      name: "zanaty",
-      email: "zanaty@gmail.com",
-    };
+    const user = User.findById(id);
+    return user;
   } catch (error) {
     console.log(error);
     throw error;
