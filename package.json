@@ -1,7 +1,7 @@
 {
   "name": "starbucks",
   "version": "1.0.0",
-  "description": "",
+  "description": "Back-end APIs model. practicing new technologies and features  to unleash new ideas",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
