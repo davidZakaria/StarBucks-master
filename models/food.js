@@ -4,17 +4,15 @@ const foodSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minlength: 3,
     maxlength: 20,
   },
   type: {
     type: String,
     required: true,
-    minlength: 3,
     maxlength: 20,
   },
   price: {
-    type: String,
+    type: Number,
     required: true,
     minlength: 0,
     maxlength: 255,

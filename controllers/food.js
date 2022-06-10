@@ -19,7 +19,7 @@ FoodController.getFoodById = async (req, res) => {
     res.status(200).json(food);
   } catch (error) {
     console.log(error);
-    res.status(500).send({ message: "Internal server error" });
+    res.status(404).send({ Error: `ID: ${req.params.id} not found!` });
   }
 };
 

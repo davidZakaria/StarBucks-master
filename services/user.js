@@ -10,5 +10,17 @@ UserService.getUserInfo = async (id) => {
     throw error;
   }
 };
+UserService.createUser = async (user) => {
+  try {
+    const newUser = new User(user);
+    const savedUser = await newUser.save();
+
+    return savedUser;
+  } catch (error) {
+    console.log(error);
+    if (user) return { error: "Email already exists" };
+    throw error;
+  }
+};
 
 module.exports = UserService;
