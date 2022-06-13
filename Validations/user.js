@@ -16,6 +16,7 @@ const createUser = {
         .minOfLowercase(1)
         .minOfUppercase(1)
         .required(),
+      isAdmin: Joi.boolean().default(false),
     })
     .required(),
 };

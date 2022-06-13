@@ -4,10 +4,10 @@ const _ = require("lodash");
 const bcrypt = require("bcryptjs");
 const UserController = {};
 
-UserController.getAllUsers = async (req, res) => {
+UserController.getAllUser = async (req, res) => {
   try {
-    const users = await UserService.getAllUsers();
-    res.status(200).json(users);
+    const user = await UserService.getAllUser();
+    res.status(200).json(user);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
@@ -23,9 +23,11 @@ UserController.getUserInfo = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
+
 UserController.createUser = async (req, res) => {
   try {
     const user = await UserService.createUser(req.body);
+    if (user.error) return res.status(400).send(user.error);
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
 
@@ -35,10 +37,20 @@ UserController.createUser = async (req, res) => {
     res
       .status(200)
       .header("x-auth-token", token)
-      .send(_.pick(user, ["_id", "nickName", "email"]));
+      .send(`${user.nickName} is successfully registered`);
   } catch (error) {
     console.log(error);
-    if (user.error) res.status(400).send(user.error);
+
+    res.status(500).send({ message: "Internal server error" });
+  }
+};
+UserController.deleteUser = async (req, res) => {
+  try {
+    const user = await UserService.deleteUser(req.params.id);
+    if (!user) return res.status(404).send({ message: "User not found" });
+    res.status(200).send(`${user.nickName} is successfully deleted`);
+  } catch (error) {
+    console.log(error);
     res.status(500).send({ message: "Internal server error" });
   }
 };

@@ -1,10 +1,10 @@
 const UserService = {};
-const User = require("../Models/users");
+const User = require("../Models/user");
 
-UserService.getAllUsers = async () => {
+UserService.getAllUser = async () => {
   try {
-    const users = await User.find();
-    return users;
+    const user = await User.find().select("-password");
+    return user;
   } catch (error) {
     console.log(error);
     return { error: "Internal server error" };
@@ -27,8 +27,20 @@ UserService.createUser = async (user) => {
 
     return savedUser;
   } catch (error) {
+    if (user.nickName === error.keyValue.nickName)
+      return { error: "Nickname already exists" };
+    if (user.email === error.keyValue.email)
+      return { error: "Email already exists" };
+    throw error;
+  }
+};
+
+UserService.deleteUser = async (id) => {
+  try {
+    const user = await User.findByIdAndDelete(id);
+    return user;
+  } catch (error) {
     console.log(error);
-    if (user) return { error: "Email already exists" };
     throw error;
   }
 };
