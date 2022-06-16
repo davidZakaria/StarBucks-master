@@ -4,7 +4,7 @@ const { joiPassword } = require("joi-password");
 const createUser = {
   body: Joi.object()
     .keys({
-      nickName: Joi.string().max(16).required(),
+      userName: Joi.string().max(16).required(),
       firstName: Joi.string().min(1).max(16).required(),
       lastName: Joi.string().min(1).max(16).required(),
       email: Joi.string().email().required(),

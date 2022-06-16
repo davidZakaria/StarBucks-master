@@ -28,8 +28,8 @@ UserService.createUser = async (user) => {
 
     return savedUser;
   } catch (error) {
-    if (user.nickName === error.keyValue.nickName)
-      return { error: "Nickname already exists" };
+    if (user.userName === error.keyValue.userName)
+      return { error: "Username already exists" };
     if (user.email === error.keyValue.email)
       return { error: "Email already exists" };
     throw error;
@@ -45,10 +45,23 @@ UserService.deleteUser = async (id) => {
     throw error;
   }
 };
+
+UserService.userUpdate = async (id, user) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(id, user, {
+      new: true,
+    });
+    return updatedUser;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 UserService.userLogin = async (user) => {
   try {
     const userInfo = await User.findOne({
-      $or: [{ nickName: user.nickName }, { email: user.email }],
+      $or: [{ userName: user.userName }, { email: user.email }],
     });
     if (!userInfo) return { error: "User not valid" };
     const validPassword = await bcrypt.compare(

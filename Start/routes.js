@@ -1,13 +1,15 @@
 const express = require("express");
-const home = require("../Routes/home");
 const UserRouter = require("../Routes/user");
-const FoodRouter = require("../Routes/food");
-const DrinksRouter = require("../Routes/drinks");
+const ItemRouter = require("../Routes/item");
+const OrdeRouter = require("../Routes/order");
+const swaggerUi = require("swagger-ui-express");
+// const swaggerDocument = require("../swagger.json");
+const swaggerConfig = require("../Config/swagger");
 
 module.exports = function (app) {
   app.use(express.json());
-  app.use("/", home);
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerConfig));
   app.use("/user", UserRouter);
-  app.use("/food", FoodRouter);
-  app.use("/drinks", DrinksRouter);
+  app.use("/item", ItemRouter);
+  app.use("/order", OrdeRouter);
 };

@@ -1,6 +1,5 @@
 const UserService = require("../Services/user");
 // const auth = require("../Middlewares/auth");
-const _ = require("lodash");
 const bcrypt = require("bcryptjs");
 const UserController = {};
 
@@ -13,6 +12,7 @@ UserController.getAllUser = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 UserController.getUserInfo = async (req, res) => {
   try {
     const userInfo = await UserService.getUserInfo(req.params.id);
@@ -37,23 +37,45 @@ UserController.createUser = async (req, res) => {
     res
       .status(200)
       .header("x-auth-token", token)
-      .send(`${user.nickName} is successfully registered`);
+      .send(`${user.userName} is successfully registered`);
   } catch (error) {
     console.log(error);
 
     res.status(500).send({ message: "Internal server error" });
   }
 };
-UserController.deleteUser = async (req, res) => {
+
+UserController.userUpdate = async (req, res) => {
   try {
-    const user = await UserService.deleteUser(req.params.id);
-    if (!user) return res.status(404).send({ message: "User not found" });
-    res.status(200).send(`${user.nickName} is successfully deleted`);
+    const user = await UserService.userUpdate(req.params.id, req.body);
+    res.status(200).json(user);
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Internal server error" });
   }
 };
+
+UserController.deleteUser = async (req, res) => {
+  try {
+    const user = await UserService.deleteUser(req.params.id);
+    if (!user) return res.status(404).send({ message: "User not found" });
+    res.status(200).send(`${user.userName} is successfully deleted`);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Internal server error" });
+  }
+};
+
+UserController.updateUser = async (req, res) => {
+  try {
+    const user = await UserService.userUpdate(req.params.id, req.body);
+    res.status(200).json("User is successfully updated");
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Internal server error" });
+  }
+};
+
 UserController.userLogin = async (req, res) => {
   try {
     const user = await UserService.userLogin(req.body);
@@ -62,7 +84,7 @@ UserController.userLogin = async (req, res) => {
     res
       .status(200)
       .header("x-auth-token", token)
-      .send(`${user.nickName}  is successfully logged in`);
+      .send(`${user.userName} logged in successfully!`);
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Internal server error" });

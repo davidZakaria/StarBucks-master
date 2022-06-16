@@ -1,15 +1,16 @@
 const Joi = require("joi");
 
-const createFood = {
+const createItem = {
   body: Joi.object()
     .keys({
-      name: Joi.string().max(20).required(),
-      type: Joi.string().max(20).required(),
+      name: Joi.string().required(),
+      type: Joi.string().required(),
+      category: Joi.string().required(),
       price: Joi.number().required(),
     })
     .required(),
 };
 
 module.exports = {
-  createFood,
+  createItem,
 };

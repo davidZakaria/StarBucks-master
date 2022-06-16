@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
-  nickName: {
+  userName: {
     type: String,
     required: true,
     maxlength: 16,
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 8,
-    maxlength: 1024,
+    maxlength: 24,
   },
   isAdmin: {
     type: Boolean,
