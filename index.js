@@ -1,13 +1,9 @@
 const express = require("express");
 const app = express();
-<<<<<<< HEAD
-require("dotenv").config();
-=======
-const port = process.env.PORT || 8080;
-const dotenv = require("dotenv");
->>>>>>> 68b76576aec65f7bbd0e6f1e4b93245222299a85
 
-// const path = require("path");
+require("dotenv").config();
+
+path = require("path");
 // const multer = require("./multer.js");
 // const db = require("./mysql");
 
