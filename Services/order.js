@@ -24,6 +24,9 @@ OrderService.getOrderById = async (userId) => {
 OrderService.createOrder = async (order) => {
   try {
     const neworder = new Order(order);
+
+    neworder.items = order.items;
+
     const savedorder = await neworder.save();
     return savedorder;
   } catch (error) {
