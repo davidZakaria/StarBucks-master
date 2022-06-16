@@ -15,7 +15,7 @@ router.post(
   RequestValidator.validate(ItemValidator.createItem),
   ItemController.createItem
 );
-router.put("/:id", ItemController.updateItem);
+router.put("/:id", auth, admin, ItemController.updateItem);
 router.delete("/:id", auth, admin, ItemController.deleteItem);
 router.delete("/", auth, admin, ItemController.deleteAllItem);
 
