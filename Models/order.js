@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
+  // _id: mongoose.Types.ObjectId,
   orderNo: {
     type: Number,
     // required: true,
@@ -18,7 +19,10 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     // required: true,
   },
-  items: [{ type: mongoose.Types.ObjectId, ref: "Item" }],
+  items: [
+    { type: mongoose.Types.ObjectId, ref: "Item", required: true },
+    { quantity: { type: Number, required: true } },
+  ],
 });
 
 const Order = mongoose.model("Order", orderSchema);

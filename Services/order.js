@@ -1,5 +1,6 @@
 const OrderService = {};
 const Order = require("../Models/order");
+const Item = require("../Models/item");
 
 OrderService.getAllOrder = async (id) => {
   try {
@@ -25,7 +26,12 @@ OrderService.createOrder = async (order) => {
   try {
     const neworder = new Order(order);
 
-    neworder.items = order.items;
+    const i = await Item.find({ _id: order.items.map((item) => item.id) });
+
+    neworder.items = i;
+    console.log(neworder);
+    // const gded = Item.findOne({ name: [neworder.items] }).populate("Order");
+    // console.log("///////////////////////////////////// %s", gded);
 
     const savedorder = await neworder.save();
     return savedorder;
