@@ -1,6 +1,7 @@
 const UserService = require("../Services/user");
 // const auth = require("../Middlewares/auth");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 const UserController = {};
 
 UserController.getAllUser = async (req, res) => {
@@ -83,6 +84,31 @@ UserController.userLogin = async (req, res) => {
     console.log(error);
     res.status(500).send({ message: "Internal server error" });
   }
+};
+UserController.getGoogleUser = async (req, res) => {
+  try {
+    passport.authenticate("google", {
+      scope: ["profile", "email"],
+      accessType: "offline",
+      prompt: "consent",
+      state: "secret-state",
+      hd: "example.com",
+      includeGrantedScopes: true,
+      session: false,
+      passReqToCallback: true,
+    })(req, res);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Internal server error" });
+  }
+};
+UserController.getGoogleUserCallback = (req, res) => {
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:5000/login-success",
+  });
+};
+UserController.loginSuccess = (req, res) => {
+  req.Json({ message: "Authentication is successfull" });
 };
 
 module.exports = UserController;

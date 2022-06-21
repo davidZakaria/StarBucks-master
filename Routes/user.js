@@ -47,5 +47,8 @@ router.post(
 router.post("/login", UserController.userLogin);
 router.put("/:id", auth, admin, UserController.updateUser);
 router.delete("/:id", auth, admin, UserController.deleteUser);
+router.get("/auth/google", UserController.getGoogleUser);
+router.get("/auth/google/callback", UserController.getGoogleUserCallback);
+router.get("login/success", UserController.loginSuccess);
 
 module.exports = router;
