@@ -12,7 +12,6 @@ UserController.getAllUser = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
 UserController.getUserInfo = async (req, res) => {
   try {
     const userInfo = await UserService.getUserInfo(req.params.id);
@@ -23,7 +22,6 @@ UserController.getUserInfo = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 UserController.createUser = async (req, res) => {
   try {
     const user = await UserService.createUser(req.body);
@@ -44,7 +42,6 @@ UserController.createUser = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 UserController.userUpdate = async (req, res) => {
   try {
     const user = await UserService.userUpdate(req.params.id, req.body);
@@ -54,7 +51,6 @@ UserController.userUpdate = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 UserController.deleteUser = async (req, res) => {
   try {
     const user = await UserService.deleteUser(req.params.id);
@@ -65,7 +61,6 @@ UserController.deleteUser = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 UserController.updateUser = async (req, res) => {
   try {
     const user = await UserService.userUpdate(req.params.id, req.body);
@@ -75,7 +70,6 @@ UserController.updateUser = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 UserController.userLogin = async (req, res) => {
   try {
     const user = await UserService.userLogin(req.body);

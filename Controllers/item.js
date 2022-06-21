@@ -11,7 +11,6 @@ ItemController.getAllItem = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 ItemController.getItemById = async (req, res) => {
   try {
     const item = await ItemService.getItemById(req.params.id);
@@ -22,7 +21,6 @@ ItemController.getItemById = async (req, res) => {
     res.status(404).send({ Error: `ID: ${req.params.id} not found!` });
   }
 };
-
 ItemController.createItem = async (req, res) => {
   try {
     const item = await ItemService.createItem(req.body);
@@ -32,7 +30,6 @@ ItemController.createItem = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 ItemController.updateItem = async (req, res) => {
   try {
     const item = await ItemService.updateItem(req.params.id, req.body);
@@ -42,7 +39,6 @@ ItemController.updateItem = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 ItemController.deleteItem = async (req, res) => {
   try {
     const item = await ItemService.deleteItem(req.params.id);
@@ -52,7 +48,6 @@ ItemController.deleteItem = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 ItemController.deleteAllItem = async (req, res) => {
   try {
     const item = await ItemService.deleteAllItem();

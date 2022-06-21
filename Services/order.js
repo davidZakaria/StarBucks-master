@@ -11,28 +11,21 @@ OrderService.getAllOrder = async (id) => {
     throw error;
   }
 };
-
-OrderService.getOrderById = async (userId) => {
+OrderService.getOrderById = async (id) => {
   try {
-    const order = await Order.find({ userId: this.userId });
+    const order = await Order.findById(id);
     return order;
   } catch (error) {
     console.log(error);
     throw error;
   }
 };
-
 OrderService.createOrder = async (order) => {
   try {
     const neworder = new Order(order);
 
     const i = await Item.find({ _id: order.items.map((item) => item.id) });
-
     neworder.items = i;
-    console.log(neworder);
-    // const gded = Item.findOne({ name: [neworder.items] }).populate("Order");
-    // console.log("///////////////////////////////////// %s", gded);
-
     const savedorder = await neworder.save();
     return savedorder;
   } catch (error) {
@@ -40,7 +33,6 @@ OrderService.createOrder = async (order) => {
     throw error;
   }
 };
-
 OrderService.deleteOrder = async (id) => {
   try {
     const deletedorder = await Order.findByIdAndDelete(id);

@@ -10,7 +10,6 @@ ItemService.getAllItem = async () => {
     throw error;
   }
 };
-
 ItemService.getItemById = async (id) => {
   try {
     const item = Item.findById(id);
@@ -21,7 +20,6 @@ ItemService.getItemById = async (id) => {
     throw error;
   }
 };
-
 ItemService.createItem = async (item) => {
   try {
     const newitem = new Item(item);
@@ -32,7 +30,6 @@ ItemService.createItem = async (item) => {
     throw error;
   }
 };
-
 ItemService.updateItem = async (id, item) => {
   try {
     const updateditem = await Item.findByIdAndUpdate(id, item, {
@@ -46,7 +43,6 @@ ItemService.updateItem = async (id, item) => {
     throw error;
   }
 };
-
 ItemService.deleteItem = async (id) => {
   try {
     const deleteditem = await Item.findByIdAndDelete(id);
@@ -57,7 +53,6 @@ ItemService.deleteItem = async (id) => {
     throw error;
   }
 };
-
 ItemService.deleteAllItem = async () => {
   try {
     const deleteditem = await Item.deleteMany();

@@ -10,7 +10,6 @@ OrderController.getAllOrder = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 OrderController.getOrderById = async (req, res) => {
   try {
     const order = await OrderService.getOrderById(req.params.id);
@@ -20,7 +19,6 @@ OrderController.getOrderById = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 OrderController.createOrder = async (req, res) => {
   try {
     const order = await OrderService.createOrder(req.body);
@@ -30,7 +28,6 @@ OrderController.createOrder = async (req, res) => {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 OrderController.deleteOrder = async (req, res) => {
   try {
     const order = await OrderService.deleteOrder(req.params.id);

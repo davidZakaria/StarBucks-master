@@ -11,7 +11,6 @@ UserService.getAllUser = async () => {
     return { error: "Internal server error" };
   }
 };
-
 UserService.getUserInfo = async (id) => {
   try {
     const user = User.findById(id);
@@ -35,7 +34,6 @@ UserService.createUser = async (user) => {
     throw error;
   }
 };
-
 UserService.deleteUser = async (id) => {
   try {
     const user = await User.findByIdAndDelete(id);
@@ -45,7 +43,6 @@ UserService.deleteUser = async (id) => {
     throw error;
   }
 };
-
 UserService.userUpdate = async (id, user) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(id, user, {
@@ -57,7 +54,6 @@ UserService.userUpdate = async (id, user) => {
     throw error;
   }
 };
-
 UserService.userLogin = async (user) => {
   try {
     const userInfo = await User.findOne({
